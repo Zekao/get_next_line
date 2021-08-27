@@ -69,7 +69,8 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = ft_strjoin(NULL, buffer);
+	line = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	ft_memcpy(line, buffer, BUFFER_SIZE + 1);
 	if (!(line))
 		return (ft_free(line));
 	if (ft_isnl(buffer) != ft_strlen(buffer))

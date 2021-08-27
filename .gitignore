@@ -2,3 +2,4 @@ main.c
 *.swp
 *.txt
 a.out
+.vscode/settings.json
