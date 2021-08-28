@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: emaugale <emaugale@students.42.fr>         +#+  +:+       +#+        */
+/*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 16:24:09 by emaugale          #+#    #+#             */
 /*   Updated: 2021/08/25 16:27:49 by emaugale         ###   ########.fr       */
