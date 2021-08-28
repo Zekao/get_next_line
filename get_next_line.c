@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 16:24:09 by emaugale          #+#    #+#             */
-/*   Updated: 2021/08/28 17:59:49 by emaugale         ###   ########.fr       */
+/*   Updated: 2021/08/28 20:28:53 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || fd > 1024 || BUFFER_SIZE <= 0)
 		return (NULL);
-	line = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	ft_memcpy(line, buffer, BUFFER_SIZE + 1);
+	line = ft_strjoin(NULL, buffer);
 	if (!(line))
 		return (ft_free(line));
 	if (ft_isnl(buffer) != ft_strlen(buffer))
