@@ -6,7 +6,7 @@
 /*   By: emaugale <emaugale@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/15 16:27:15 by emaugale          #+#    #+#             */
-/*   Updated: 2021/08/28 20:29:35 by emaugale         ###   ########.fr       */
+/*   Updated: 2021/10/11 21:14:39 by emaugale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,69 +25,95 @@ size_t	ft_strlen(char const *str)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2, int i, int j)
 {
-	char	*str;
-	int		i;
-	int		j;
+	char		*temp;
 
-	if (!s2)
-		return (NULL);
-	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_isnl(s2) + 2));
-	if (!str)
-		return (NULL);
-	i = ft_strlen(s1);
-	j = 0;
-	ft_memcpy(str, s1, i);
-	while (s2[j])
+	if (!s1)
 	{
-		str[i + j] = s2[j];
-		j++;
-		if (s2[j - 1] == '\n')
-			break ;
+		s1 = (char *)malloc(sizeof(char) * 1);
+		s1[i] = '\0';
 	}
-	str[i + j] = '\0';
-	ft_free((char *)s1);
-	return (str);
-}
-
-void	*ft_memcpy(void *dest, const void *src, size_t n)
-{
-	size_t	i;
-	char	*ptr_src;
-	char	*ptr_dest;
-
-	i = 0;
-	ptr_src = (void *)src;
-	ptr_dest = dest;
-	while (i < n)
+	if (!s2 || !s1)
+		return (NULL);
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!temp)
+		return (NULL);
+	while (s1[i])
 	{
-		ptr_dest[i] = ptr_src[i];
+		temp[i] = s1[i];
 		i++;
 	}
-	return (dest);
+	while (s2[++j])
+		temp[i + j] = s2[j];
+	temp[i + j] = '\0';
+	free(s1);
+	return (temp);
 }
 
-int	ft_checknl(char *str)
+char	*ft_get_line(char	*str)
+{
+	char		*temp;
+	int			i;
+
+	i = 0;
+	if (!str[i])
+		return (NULL);
+	while (str[i] && str[i] != '\n')
+		i++;
+	temp = (char *)malloc(sizeof(char) * (i + 2));
+	if (!temp)
+		return (NULL);
+	i = 0;
+	while (str[i] && str[i] != '\n')
+	{
+		temp[i] = str[i];
+		i++;
+	}
+	if (str[i] == '\n')
+	{
+		temp[i] = str[i];
+		i++;
+	}
+	temp[i] = '\0';
+	return (temp);
+}
+
+char	*ft_get_next(char *str)
+{
+	char		*temp;
+	int			i;
+	int			j;
+
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	if (!str[i])
+		return (ft_free(str));
+	temp = (char *)malloc(sizeof(char) * (ft_strlen(str) - i));
+	if (!temp)
+		return (NULL);
+	j = i + 1;
+	while (str[++i])
+		temp[i - j] = str[i];
+	temp[i - j] = '\0';
+	free(str);
+	return (temp);
+}
+
+int	ft_strchr(char *str, char c)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	if (str)
 	{
-		if (str[i] == '\n')
-			return (1);
-		i++;
+		while (str[i])
+		{
+			if (str[i] == c)
+				return (i);
+			i++;
+		}
 	}
-	return (0);
-}
-
-size_t	ft_isnl(char const *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\n' && str[i])
-		i++;
-	return (i);
+	return (-1);
 }

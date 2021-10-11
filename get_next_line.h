@@ -25,13 +25,12 @@
 # endif
 
 size_t	ft_strlen(char const *str);
-void	*ft_memcpy(void *dest, const void *src, size_t n);
-void	ft_modify_buffer(char *str, size_t n);
-char	*ft_return(char *buffer, char *line);
-int		ft_checknl(char *str);
-size_t	ft_isnl(char const *str);
+char	*ft_check(char *memory, int fd);
 char	*get_next_line(int fd);
-char	*ft_strjoin(const char *s1, const char *s2);
+int		ft_strchr(char *str, char c);
+char	*ft_get_next(char *str);
+char	*ft_strjoin(char *s1, char *s2, int i, int j);
+char	*ft_get_line(char *str);
 char	*ft_free(char *str);
 
 #endif
